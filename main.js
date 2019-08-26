@@ -4,7 +4,7 @@ boton.addEventListener('click', Ingresar);
 var resultado = document.querySelector('#resultado');
 
 function Ingresar(){
-    let HoraEntrda = Number(document.querySelector('#HoraSalida').value);
+    let HoraEntrda = Number(document.querySelector('#HoraEntrada').value);
     let MinutosEntrada = Number(document.querySelector('#MinutosEntrada').value);
     let SegundosEntrada = Number(document.querySelector('#SegundosEntrada').value);
     let HoraSalida = Number(document.querySelector('#HoraSalida').value);
@@ -17,8 +17,11 @@ function Ingresar(){
 
     TiempoEntrada.setHours(HoraEntrda, MinutosEntrada, SegundosEntrada);
     TiempoSalida.setHours(HoraSalida, MinutosSalida, SegundosSalida);
+    console.log(TiempoEntrada);
+    console.log(TiempoSalida);
     
-    TiempoTrabajo.setHours( TiempoEntrada.getHours() - TiempoSalida.getHours() , TiempoEntrada.getMinutes() - TiempoSalida.getMinutes(), TiempoEntrada.getSeconds()  - TiempoSalida.getSeconds());
+    
+    TiempoTrabajo.setHours(  TiempoSalida.getHours() - TiempoEntrada.getHours() , TiempoSalida.getMinutes() - TiempoEntrada.getMinutes(),  TiempoSalida.getSeconds() - TiempoEntrada.getSeconds());
 
     resultado.innerHTML = "El tiempo trabajado es: " + (TiempoTrabajo.getHours() ? TiempoTrabajo.getHours() + (TiempoTrabajo.getHours() > 1 ? " horas" : " hora") : "") + (TiempoTrabajo.getMinutes() ? ", " + TiempoTrabajo.getMinutes() + (TiempoTrabajo.getMinutes() > 1 ? " minutos" : " minuto") : "") + (TiempoTrabajo.getSeconds() ? (TiempoTrabajo.getHours() || TiempoTrabajo.getMinutes() ? " y " : "") + TiempoTrabajo.getSeconds() + (TiempoTrabajo.getSeconds() > 1 ? " segundos" : " segundo") : "");
 
